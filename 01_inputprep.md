@@ -11,3 +11,6 @@
 
 7. The input files for PGGB would be per chromosome containing sequences from each assemblies with headers like `RVCU#0#4#piece0` from PanSN-spec (https://github.com/pangenome/PanSN-spec)
 
+## Scaffolding the Pakistan river assemblies
+
+To scaffold the Pakistan river assemblies, I use `scripts/ragtag.sh`. Then run `scripts/dotplot.sh` to visualise the scaffolding using dotplot.
