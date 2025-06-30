@@ -18,4 +18,4 @@
 
 To annotate the variants using vep: `scripts/vep.sh`
 
-Further analysis were written in Rscripts which can be found here 
+Further analysis were written in Rscripts which can be found here [link](https://github.com/plnspineda/bufpangenome_supplementary/tree/main/Rscripts)
