@@ -59,20 +59,17 @@ def adjust_vcf(input_vcf, output_vcf, contig_file, compress_output=False):
         with infile, outfile:
             for line in infile:
                 if line.startswith('##contig='):
-                    # Parse contig header
                     contig_match = re.match(r'##contig=<ID=([^,]+),length=\d+>', line.strip())
                     if contig_match:
                         contig_id = contig_match.group(1)
                         chrom = extract_chrom_from_contig(contig_id)
                         if chrom and chrom in chrom_lengths:
-                            # Write new contig header with chromosome and max length
                             outfile.write(f"##contig=<ID={chrom},length={chrom_lengths[chrom]}>\n")
-                        continue  # Skip original contig line
+                        continue
                     else:
                         print(f"Warning: Invalid contig header format: {line.strip()}")
                         continue
                 elif line.startswith('#'):
-                    # Preserve other header lines
                     outfile.write(line)
                     continue
                 
@@ -84,13 +81,11 @@ def adjust_vcf(input_vcf, output_vcf, contig_file, compress_output=False):
                     print(f"Warning: Invalid position in line: {line.strip()}")
                     continue
 
-                # Extract chromosome from contig name
                 original_chrom = extract_chrom_from_contig(contig)
                 if original_chrom is None:
                     print(f"Warning: Skipping line with invalid contig {contig}: {line.strip()}")
                     continue
 
-                # Find matching contig piece
                 if contig in offsets:
                     offset = offsets[contig]
                     new_pos = pos + offset
